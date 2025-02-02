@@ -1,0 +1,280 @@
+[gd_scene load_steps=14 format=3 uid="uid://cv8lncnbk60bt"]
+
+[ext_resource type="PackedScene" uid="uid://cw8u4ks1tisro" path="res://scenes/player.tscn" id="1_wkbnf"]
+[ext_resource type="Script" path="res://scripts/vehicle_selection.gd" id="1_xc4jk"]
+[ext_resource type="PackedScene" uid="uid://so1tkyfbuhwi" path="res://scenes/player_monster_truck.tscn" id="2_0mm4u"]
+[ext_resource type="Texture2D" uid="uid://bdtes4wlu0pdy" path="res://textures/seamless_desert_sand_texture_by_hhh316_d311qn7-fullview.jpg" id="2_yjp7x"]
+[ext_resource type="PackedScene" uid="uid://du4ga1iag7m1x" path="res://scenes/player_tank.tscn" id="3_hwb34"]
+[ext_resource type="PackedScene" uid="uid://bpslk1oysapd4" path="res://scenes/player4.tscn" id="4_vmsut"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="7_nk71c"]
+[ext_resource type="PackedScene" uid="uid://djdewgdp2imie" path="res://scenes/chain_link_fence.tscn" id="8_2vuc3"]
+[ext_resource type="PackedScene" uid="uid://cycmi16n58lqq" path="res://scenes/tire_stack.tscn" id="9_6wpf5"]
+[ext_resource type="PackedScene" uid="uid://cnb2xiek4ng0k" path="res://scenes/shipping_container.tscn" id="10_f0td2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wbxnp"]
+albedo_color = Color(0.437151, 0.385394, 0.245235, 1)
+albedo_texture = ExtResource("2_yjp7x")
+uv1_scale = Vector3(0.04, 0.04, 0.04)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_w4k0w"]
+material = SubResource("StandardMaterial3D_wbxnp")
+size = Vector3(250, 1, 250)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ajkmu"]
+size = Vector3(250, 2, 250)
+
+[node name="vehicle_selection" type="Node3D"]
+script = ExtResource("1_xc4jk")
+
+[node name="vehicles" type="Node" parent="."]
+
+[node name="player_monster_truck" parent="vehicles" instance=ExtResource("2_0mm4u")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 4, 1, -1)
+
+[node name="player_hotrod" parent="vehicles" instance=ExtResource("1_wkbnf")]
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 7, 0.6, 4)
+
+[node name="player_tank" parent="vehicles" instance=ExtResource("3_hwb34")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -4, 0.7, -1)
+
+[node name="player_half_track" parent="vehicles" instance=ExtResource("4_vmsut")]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, -7, 0.7, 4)
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_w4k0w")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_ajkmu")
+
+[node name="vehicle_label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.573577, 0.819152, 0, -0.819152, 0.573577, 0, 20, 15)
+script = ExtResource("7_nk71c")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.173648, 0.984808, 0, -0.984808, -0.173648, 0, 20.697, 1.67656)
+light_energy = 2.5
+shadow_enabled = true
+shadow_normal_bias = 1.0
+shadow_blur = 2.0
+
+[node name="Marker3D" type="Marker3D" parent="."]
+
+[node name="Node" type="Node" parent="."]
+
+[node name="chain link fence" parent="Node" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30.8)
+
+[node name="chain link fence2" parent="Node" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1, 0, -30.8)
+
+[node name="chain link fence3" parent="Node" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.2, 0, -30.8)
+
+[node name="chain link fence4" parent="Node" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.2, 0, -30.8)
+
+[node name="chain link fence5" parent="Node" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1, 0, -30.8)
+
+[node name="chain link fence6" parent="Node" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5, 0, -30.8)
+
+[node name="chain link fence7" parent="Node" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4, 0, -30.8)
+
+[node name="chain link fence8" parent="Node" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3, 0, -30.8)
+
+[node name="chain link fence9" parent="Node" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.7, 0, -30.8)
+
+[node name="chain link fence10" parent="Node" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.6, 0, -30.8)
+
+[node name="chain link fence11" parent="Node" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 0, -30.8)
+
+[node name="chain link fence12" parent="Node" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6, 0, -30.8)
+
+[node name="chain link fence13" parent="Node" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.7, 0, -30.8)
+
+[node name="chain link fence14" parent="Node" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3, 0, -30.8)
+
+[node name="chain link fence15" parent="Node" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4, 0, -30.8)
+
+[node name="Node4" type="Node" parent="."]
+
+[node name="chain link fence" parent="Node4" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30.7)
+
+[node name="chain link fence2" parent="Node4" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1, 0, 30.7)
+
+[node name="chain link fence3" parent="Node4" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.2, 0, 30.7)
+
+[node name="chain link fence4" parent="Node4" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.2, 0, 30.7)
+
+[node name="chain link fence5" parent="Node4" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1, 0, 30.7)
+
+[node name="chain link fence6" parent="Node4" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5, 0, 30.7)
+
+[node name="chain link fence7" parent="Node4" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4, 0, 30.7)
+
+[node name="chain link fence8" parent="Node4" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3, 0, 30.7)
+
+[node name="chain link fence9" parent="Node4" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.7, 0, 30.7)
+
+[node name="chain link fence10" parent="Node4" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.6, 0, 30.7)
+
+[node name="chain link fence11" parent="Node4" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 0, 30.7)
+
+[node name="chain link fence12" parent="Node4" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6, 0, 30.7)
+
+[node name="chain link fence13" parent="Node4" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.7, 0, 30.7)
+
+[node name="chain link fence14" parent="Node4" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3, 0, 30.7)
+
+[node name="chain link fence15" parent="Node4" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4, 0, 30.7)
+
+[node name="Node2" type="Node" parent="."]
+
+[node name="chain link fence" parent="Node2" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, -7.59959e-07)
+
+[node name="chain link fence2" parent="Node2" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, -4.1)
+
+[node name="chain link fence3" parent="Node2" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, -8.2)
+
+[node name="chain link fence4" parent="Node2" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, 8.2)
+
+[node name="chain link fence5" parent="Node2" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, 4.1)
+
+[node name="chain link fence6" parent="Node2" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, 20.5)
+
+[node name="chain link fence7" parent="Node2" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, 16.4)
+
+[node name="chain link fence8" parent="Node2" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, 12.3)
+
+[node name="chain link fence9" parent="Node2" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, 28.7)
+
+[node name="chain link fence10" parent="Node2" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, 24.6)
+
+[node name="chain link fence11" parent="Node2" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, -20.5)
+
+[node name="chain link fence12" parent="Node2" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, -24.6)
+
+[node name="chain link fence13" parent="Node2" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, -28.7)
+
+[node name="chain link fence14" parent="Node2" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, -12.3)
+
+[node name="chain link fence15" parent="Node2" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, -16.4)
+
+[node name="Node3" type="Node" parent="."]
+
+[node name="chain link fence" parent="Node3" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, -7.52509e-07)
+
+[node name="chain link fence2" parent="Node3" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, -4.1)
+
+[node name="chain link fence3" parent="Node3" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, -8.2)
+
+[node name="chain link fence4" parent="Node3" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, 8.2)
+
+[node name="chain link fence5" parent="Node3" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, 4.1)
+
+[node name="chain link fence6" parent="Node3" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, 20.5)
+
+[node name="chain link fence7" parent="Node3" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, 16.4)
+
+[node name="chain link fence8" parent="Node3" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, 12.3)
+
+[node name="chain link fence9" parent="Node3" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, 28.7)
+
+[node name="chain link fence10" parent="Node3" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, 24.6)
+
+[node name="chain link fence11" parent="Node3" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, -20.5)
+
+[node name="chain link fence12" parent="Node3" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, -24.6)
+
+[node name="chain link fence13" parent="Node3" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, -28.7)
+
+[node name="chain link fence14" parent="Node3" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, -12.3)
+
+[node name="chain link fence15" parent="Node3" instance=ExtResource("8_2vuc3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, -16.4)
+
+[node name="Node3D" parent="." instance=ExtResource("9_6wpf5")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -20, 0, 20)
+
+[node name="Node3D4" parent="." instance=ExtResource("9_6wpf5")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -20, 0, -20)
+
+[node name="Node3D2" parent="." instance=ExtResource("9_6wpf5")]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 20, 0, 18)
+
+[node name="Node3D3" parent="." instance=ExtResource("9_6wpf5")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 20, 0, -20)
+
+[node name="shipping container" parent="." instance=ExtResource("10_f0td2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 0)
+
+[node name="shipping container2" parent="." instance=ExtResource("10_f0td2")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 23, 0, 18)

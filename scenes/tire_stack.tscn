@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://cycmi16n58lqq"]
+
+[ext_resource type="PackedScene" uid="uid://fjbs8fgct58q" path="res://scenes/loose_tyre.tscn" id="1_03rlm"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="RigidBody3D" parent="." instance=ExtResource("1_03rlm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0, 0)
+
+[node name="RigidBody3D2" parent="." instance=ExtResource("1_03rlm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 0, 0)
+
+[node name="RigidBody3D3" parent="." instance=ExtResource("1_03rlm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+
+[node name="RigidBody3D4" parent="." instance=ExtResource("1_03rlm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0, 0)
+
+[node name="RigidBody3D7" parent="." instance=ExtResource("1_03rlm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 1.2, 0)
+
+[node name="RigidBody3D9" parent="." instance=ExtResource("1_03rlm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 1.2, 0)
+
+[node name="RigidBody3D10" parent="." instance=ExtResource("1_03rlm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1.2, 0)
+
+[node name="RigidBody3D11" parent="." instance=ExtResource("1_03rlm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.2, 0)
+
+[node name="RigidBody3D5" parent="." instance=ExtResource("1_03rlm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47035e-08, 0.6, 0)
+
+[node name="RigidBody3D6" parent="." instance=ExtResource("1_03rlm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7, 0.6, 0)
+
+[node name="RigidBody3D8" parent="." instance=ExtResource("1_03rlm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7, 0.6, 0)
+
+[node name="RigidBody3D12" parent="." instance=ExtResource("1_03rlm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47035e-08, 1.8, 0)
+
+[node name="RigidBody3D13" parent="." instance=ExtResource("1_03rlm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7, 1.8, 0)
+
+[node name="RigidBody3D14" parent="." instance=ExtResource("1_03rlm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7, 1.8, 0)

@@ -1,0 +1,306 @@
+[gd_scene load_steps=16 format=3 uid="uid://bddun3qpntqv7"]
+
+[ext_resource type="Texture2D" uid="uid://bdtes4wlu0pdy" path="res://textures/seamless_desert_sand_texture_by_hhh316_d311qn7-fullview.jpg" id="1_o41pt"]
+[ext_resource type="PackedScene" uid="uid://bx26gd1k7i7dh" path="res://scenes/player_vehicles/custom_vehicle_1.tscn" id="3_3sduv"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="3_pe6ne"]
+[ext_resource type="PackedScene" uid="uid://djdewgdp2imie" path="res://scenes/chain_link_fence.tscn" id="4_yjmg5"]
+[ext_resource type="PackedScene" uid="uid://cycmi16n58lqq" path="res://scenes/tire_stack.tscn" id="5_ohgtt"]
+[ext_resource type="PackedScene" uid="uid://dprfihq8l2d26" path="res://scenes/barrel.tscn" id="6_a1enu"]
+[ext_resource type="PackedScene" uid="uid://bclscjh27ajd7" path="res://scenes/test_car.tscn" id="7_wonov"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nlivw"]
+sky_energy_multiplier = 25.62
+
+[sub_resource type="Sky" id="Sky_vq3e5"]
+sky_material = SubResource("ProceduralSkyMaterial_nlivw")
+process_mode = 1
+
+[sub_resource type="Environment" id="Environment_mxibo"]
+background_energy_multiplier = 1.2
+sky = SubResource("Sky_vq3e5")
+tonemap_white = 0.61
+ssr_depth_tolerance = 0.01
+ssao_enabled = true
+ssao_power = 2.61165
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_cascades = 3
+sdfgi_min_cell_size = 0.4
+sdfgi_y_scale = 2
+sdfgi_energy = 1.25
+fog_mode = 1
+fog_light_color = Color(0.889244, 0.731147, 0.559209, 1)
+fog_density = 0.1
+fog_height_density = -0.005
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.035
+volumetric_fog_albedo = Color(0.552608, 0.390224, 0.207877, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_uho04"]
+auto_exposure_enabled = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nhvth"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a5b6n"]
+size = Vector3(250, 2, 250)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glyxj"]
+albedo_color = Color(0.620934, 0.509757, 0.345479, 1)
+albedo_texture = ExtResource("1_o41pt")
+uv1_scale = Vector3(0.3, 0.3, 0.3)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_wbi4n"]
+material = SubResource("StandardMaterial3D_glyxj")
+size = Vector3(250, 1, 250)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mxibo")
+camera_attributes = SubResource("CameraAttributesPractical_uho04")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 15.5, 30)
+shadow_enabled = true
+shadow_opacity = 0.7
+shadow_blur = 2.5
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_nhvth")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_a5b6n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_wbi4n")
+skeleton = NodePath("../..")
+
+[node name="camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 3.11418e-07, -1.52197e-07, -5.39493e-08, 0.573576, 0.819152, 3.42395e-07, -0.819152, 0.573576, 0, 15, 10)
+script = ExtResource("3_pe6ne")
+
+[node name="custom_vehicle_1" parent="." instance=ExtResource("3_3sduv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Node3" type="Node" parent="."]
+
+[node name="chain link fence" parent="Node3" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, -7.52509e-07)
+
+[node name="chain link fence2" parent="Node3" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, -4.1)
+
+[node name="chain link fence3" parent="Node3" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, -8.2)
+
+[node name="chain link fence4" parent="Node3" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, 8.2)
+
+[node name="chain link fence5" parent="Node3" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, 4.1)
+
+[node name="chain link fence6" parent="Node3" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, 20.5)
+
+[node name="chain link fence7" parent="Node3" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, 16.4)
+
+[node name="chain link fence8" parent="Node3" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, 12.3)
+
+[node name="chain link fence9" parent="Node3" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, 28.7)
+
+[node name="chain link fence10" parent="Node3" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, 24.6)
+
+[node name="chain link fence11" parent="Node3" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, -20.5)
+
+[node name="chain link fence12" parent="Node3" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, -24.6)
+
+[node name="chain link fence13" parent="Node3" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, -28.7)
+
+[node name="chain link fence14" parent="Node3" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, -12.3)
+
+[node name="chain link fence15" parent="Node3" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.6, 0, -16.4)
+
+[node name="Node2" type="Node" parent="."]
+
+[node name="chain link fence" parent="Node2" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, -7.59959e-07)
+
+[node name="chain link fence2" parent="Node2" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, -4.1)
+
+[node name="chain link fence3" parent="Node2" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, -8.2)
+
+[node name="chain link fence4" parent="Node2" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, 8.2)
+
+[node name="chain link fence5" parent="Node2" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, 4.1)
+
+[node name="chain link fence6" parent="Node2" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, 20.5)
+
+[node name="chain link fence7" parent="Node2" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, 16.4)
+
+[node name="chain link fence8" parent="Node2" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, 12.3)
+
+[node name="chain link fence9" parent="Node2" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, 28.7)
+
+[node name="chain link fence10" parent="Node2" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, 24.6)
+
+[node name="chain link fence11" parent="Node2" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, -20.5)
+
+[node name="chain link fence12" parent="Node2" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, -24.6)
+
+[node name="chain link fence13" parent="Node2" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, -28.7)
+
+[node name="chain link fence14" parent="Node2" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, -12.3)
+
+[node name="chain link fence15" parent="Node2" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30.8, 0, -16.4)
+
+[node name="Node4" type="Node" parent="."]
+
+[node name="chain link fence" parent="Node4" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30.7)
+
+[node name="chain link fence2" parent="Node4" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1, 0, 30.7)
+
+[node name="chain link fence3" parent="Node4" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.2, 0, 30.7)
+
+[node name="chain link fence4" parent="Node4" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.2, 0, 30.7)
+
+[node name="chain link fence5" parent="Node4" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1, 0, 30.7)
+
+[node name="chain link fence6" parent="Node4" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5, 0, 30.7)
+
+[node name="chain link fence7" parent="Node4" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4, 0, 30.7)
+
+[node name="chain link fence8" parent="Node4" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3, 0, 30.7)
+
+[node name="chain link fence9" parent="Node4" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.7, 0, 30.7)
+
+[node name="chain link fence10" parent="Node4" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.6, 0, 30.7)
+
+[node name="chain link fence11" parent="Node4" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 0, 30.7)
+
+[node name="chain link fence12" parent="Node4" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6, 0, 30.7)
+
+[node name="chain link fence13" parent="Node4" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.7, 0, 30.7)
+
+[node name="chain link fence14" parent="Node4" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3, 0, 30.7)
+
+[node name="chain link fence15" parent="Node4" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4, 0, 30.7)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="chain link fence" parent="Node" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30.8)
+
+[node name="chain link fence2" parent="Node" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1, 0, -30.8)
+
+[node name="chain link fence3" parent="Node" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.2, 0, -30.8)
+
+[node name="chain link fence4" parent="Node" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.2, 0, -30.8)
+
+[node name="chain link fence5" parent="Node" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1, 0, -30.8)
+
+[node name="chain link fence6" parent="Node" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5, 0, -30.8)
+
+[node name="chain link fence7" parent="Node" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4, 0, -30.8)
+
+[node name="chain link fence8" parent="Node" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3, 0, -30.8)
+
+[node name="chain link fence9" parent="Node" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.7, 0, -30.8)
+
+[node name="chain link fence10" parent="Node" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.6, 0, -30.8)
+
+[node name="chain link fence11" parent="Node" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 0, -30.8)
+
+[node name="chain link fence12" parent="Node" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.6, 0, -30.8)
+
+[node name="chain link fence13" parent="Node" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.7, 0, -30.8)
+
+[node name="chain link fence14" parent="Node" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3, 0, -30.8)
+
+[node name="chain link fence15" parent="Node" instance=ExtResource("4_yjmg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4, 0, -30.8)
+
+[node name="Node3D2" parent="." instance=ExtResource("5_ohgtt")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -20, 0.5, 20)
+
+[node name="Node3D7" parent="." instance=ExtResource("5_ohgtt")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -14, 0.5, 21)
+
+[node name="Node3D4" parent="." instance=ExtResource("5_ohgtt")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -20, 0.5, -20)
+
+[node name="Node3D3" parent="." instance=ExtResource("5_ohgtt")]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 20, 0.5, 18)
+
+[node name="Node3D6" parent="." instance=ExtResource("5_ohgtt")]
+transform = Transform3D(1, 0, 7.45058e-08, 0, 1, 0, -7.45058e-08, 0, 1, 14, 0.5, 22)
+
+[node name="Node3D5" parent="." instance=ExtResource("5_ohgtt")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 20, 0.5, -20)
+
+[node name="barrel" parent="." instance=ExtResource("6_a1enu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0.5, 19)
+
+[node name="barrel2" parent="." instance=ExtResource("6_a1enu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.5, 18)
+
+[node name="barrel3" parent="." instance=ExtResource("6_a1enu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.5, -18)
+
+[node name="barrel4" parent="." instance=ExtResource("6_a1enu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0.5, -18)
+
+[node name="Node3D" parent="." instance=ExtResource("7_wonov")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)

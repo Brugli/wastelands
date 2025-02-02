@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://4jium4rujw70"
+path.s3tc="res://.godot/imported/chain link fence_36_rusty copper metal texture-seamless.jpg-56935453ca6a693ece16b8b406ea1a04.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "93ee36f45d5a5cd698376e917f4d4b94"
+}
+
+[deps]
+
+source_file="res://models/chain link fence_36_rusty copper metal texture-seamless.jpg"
+dest_files=["res://.godot/imported/chain link fence_36_rusty copper metal texture-seamless.jpg-56935453ca6a693ece16b8b406ea1a04.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://t76bb2sovov0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jy4c2"]
+size = Vector3(1, 0.001, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ifbxc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_37b2x"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2gh5g"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="RigidBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4995, 0)
+shape = SubResource("BoxShape3D_jy4c2")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mass = 0.001
+gravity_scale = -8.0
+center_of_mass_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000499964, 0)
+shape = SubResource("BoxShape3D_ifbxc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2/CollisionShape3D"]
+mesh = SubResource("BoxMesh_37b2x")
+
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="."]
+node_a = NodePath("../RigidBody3D")
+node_b = NodePath("../RigidBody3D2")
+linear_spring_x/enabled = true
+linear_spring_x/stiffness = 10.0
+linear_spring_y/enabled = true
+linear_spring_y/stiffness = 10.0
+linear_spring_z/enabled = true
+linear_spring_z/stiffness = 10.0
+angular_spring_x/enabled = true
+angular_spring_x/stiffness = 10000.0
+angular_spring_y/enabled = true
+angular_spring_y/stiffness = 10000.0
+angular_spring_z/enabled = true
+angular_spring_z/stiffness = 10000.0
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+shape = SubResource("CylinderShape3D_2gh5g")

@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://bufjb257yf5d5"]
+
+[ext_resource type="Script" path="res://wastelands.gd" id="1_ocq1j"]
+[ext_resource type="Texture2D" uid="uid://bdtes4wlu0pdy" path="res://textures/seamless_desert_sand_texture_by_hhh316_d311qn7-fullview.jpg" id="1_s0ljl"]
+[ext_resource type="PackedScene" uid="uid://cdm8di1gw8kjp" path="res://scenes/player_camera.tscn" id="2_60xiw"]
+[ext_resource type="PackedScene" uid="uid://so1tkyfbuhwi" path="res://scenes/player_monster_truck.tscn" id="3_abun6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wywl"]
+albedo_color = Color(0.437151, 0.385394, 0.245235, 1)
+albedo_texture = ExtResource("1_s0ljl")
+uv1_scale = Vector3(0.04, 0.04, 0.04)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_wu6cl"]
+material = SubResource("StandardMaterial3D_3wywl")
+size = Vector3(100, 1, 100)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_l1bvq"]
+data = PackedVector3Array(-50, 0.5, 50, 50, 0.5, 50, -50, -0.5, 50, 50, 0.5, 50, 50, -0.5, 50, -50, -0.5, 50, 50, 0.5, -50, -50, 0.5, -50, 50, -0.5, -50, -50, 0.5, -50, -50, -0.5, -50, 50, -0.5, -50, 50, 0.5, 50, 50, 0.5, -50, 50, -0.5, 50, 50, 0.5, -50, 50, -0.5, -50, 50, -0.5, 50, -50, 0.5, -50, -50, 0.5, 50, -50, -0.5, -50, -50, 0.5, 50, -50, -0.5, 50, -50, -0.5, -50, 50, 0.5, 50, -50, 0.5, 50, 50, 0.5, -50, -50, 0.5, 50, -50, 0.5, -50, 50, 0.5, -50, -50, -0.5, 50, 50, -0.5, 50, -50, -0.5, -50, 50, -0.5, 50, 50, -0.5, -50, -50, -0.5, -50)
+
+[node name="Wastelands" type="Node3D"]
+script = ExtResource("1_ocq1j")
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_wu6cl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_l1bvq")
+
+[node name="camera_rig" parent="." instance=ExtResource("2_60xiw")]
+
+[node name="player" parent="." instance=ExtResource("3_abun6")]
