@@ -27,5 +27,5 @@ func _process(delta):
 	#var basic_chassis = node_3d.get_child(1)
 	#parent = $"../custom_vehicle_1".get_child(0)
 	parent = node_3d.get_child(0)
-	position = Vector3(parent.position.x, parent.position.y + 15, parent.position.z + 10)
+	position = Vector3(parent.position.x, parent.position.y + 25, parent.position.z + 20)
 	$".".position = position

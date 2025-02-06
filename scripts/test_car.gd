@@ -21,17 +21,19 @@ var steering_input: float
 #@onready var node_3d: Node3D = $CollisionShape3D/Node3D
 @onready var node_3d: Node3D = $Node3D
 
-var body_tilt = 75
+var body_tilt = 270
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("brake"):
-		front_tire_grip = 0.3
+		front_tire_grip = 0.35
 		rear_tire_grip = 0.2
+	elif Input.is_action_pressed("steer_right") || Input.is_action_pressed("steer_left"):
+		front_tire_grip = 0.6
+		rear_tire_grip = 0.5
 	else:
-		front_tire_grip = 1.0
-		rear_tire_grip = 0.7
+		front_tire_grip = 0.5
+		rear_tire_grip = 0.5
 	acceleration_input = Input.get_axis("reverse", "forward")
-	
 	steering_input = Input.get_axis("steer_right", "steer_left")
 	var steering_rotation = steering_input * steering_angle
 	
@@ -48,6 +50,6 @@ func _process(delta: float) -> void:
 		fr_wheel.rotation.y = lerp(fr_wheel.rotation.y, 0.0, 0.3)
 	
 	#var t = -steering_input * linear_velocity.length() / -body_tilt
-	var r = -acceleration_input * (linear_velocity.length() * 2) / 225
+	var r = -acceleration_input * (linear_velocity.length()) / 180
 	#node_3d.rotation.z = lerp(node_3d.rotation.z, t, 5.0 * delta)
-	node_3d.rotation.x = lerp(node_3d.rotation.x, r, 5.0 * delta)
+	node_3d.rotation.x = lerp(node_3d.rotation.x, r, delta)

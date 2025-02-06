@@ -158,7 +158,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_33h8y")
 
 [node name="ImpalaBody" type="Node3D"]
-transform = Transform3D(0.9, 0, 0, 0, 0.896575, -0.0697246, 0, 0.0784401, 0.796956, 0, 0.2, -0.2)
+transform = Transform3D(0.8, 0, 0, 0, 0.9, 0, 0, -3.72529e-08, 0.8, 0, 0.2, -0.4)
 
 [node name="Cube_154" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.5, 0, -5.5943e-07, 0, 0.6, 0, -5.44501e-05, 0, 4, 0, 0.6, 0)

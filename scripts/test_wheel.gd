@@ -5,9 +5,8 @@ extends RayCast3D
 
 @export var is_front_wheel: bool
 @onready var body: Node3D = $"../../Node3D"
-
 @onready var node_3d: Node3D = $Node3D
-@onready var tire_circumference:float = PI * chassis.rear_wheel_radius*2.0
+@onready var tire_circumference: float = PI * chassis.rear_wheel_radius * 2.0
 var last_pos:Vector3
 
 var previous_spring_length: float = 0.0
@@ -57,7 +56,7 @@ func apply_lateral_force(collision_point, delta):
 	var lateral_force = desired_velocity_change / delta
 	
 	chassis.apply_force(direction * lateral_force, collision_point - chassis.global_position)
-	var t = (lateral_force / 360) * chassis.linear_velocity.length() / 90
+	var t = (lateral_force / 360) * chassis.linear_velocity.length() / 360
 	
 	body.rotation.z = lerp(body.rotation.z, t, delta)
 	#body.rotation.x = lerp(body.rotation.x, r, 5.0 * delta)
@@ -122,4 +121,4 @@ func suspension(delta, collision_point):
 	if chassis.debug:
 		#DebugDraw3D.draw_sphere(point, 0.1)
 		DebugDraw3D.draw_arrow(global_position, to_global(position + Vector3(-position.x, (suspension_force.y / 100), -position.z)), Color.GREEN, 0.1, true)
-		DebugDraw3D.draw_line_hit_offset(global_position, to_global(position + Vector3(-position.x, -2, -position.z)), true, distance, 0.2, Color.RED, Color.RED)
+		DebugDraw3D.draw_line_hit_offset(global_position, to_global(position + Vector3(-position.x, -5, -position.z)), true, distance, 0.2, Color.RED, Color.RED)
